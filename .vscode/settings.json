@@ -1,0 +1,24 @@
+{
+  "peacock.remoteColor": "#1e5f60",
+  "conventionalCommits.scopes": ["devcontainer.json", "settings.json"],
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#063232",
+    "activityBar.activeBorder": "#422c74",
+    "activityBar.background": "#2a8587",
+    "activityBar.foreground": "#e7e7e7",
+    "activityBar.inactiveForeground": "#e7e7e799",
+    "activityBarBadge.background": "#b33eb1",
+    "activityBarBadge.foreground": "#e7e7e7",
+    "sash.hoverBorder": "#2a8587",
+    "statusBar.background": "#1e5f60",
+    "statusBar.foreground": "#e7e7e7",
+    "statusBarItem.hoverBackground": "#2a8587",
+    "statusBarItem.remoteBackground": "#1e5f60",
+    "statusBarItem.remoteForeground": "#e7e7e7",
+    "titleBar.activeBackground": "#1e5f60",
+    "titleBar.activeForeground": "#e7e7e7",
+    "titleBar.inactiveBackground": "#1e5f6099",
+    "titleBar.inactiveForeground": "#e7e7e799",
+    "commandCenter.border": "#e7e7e799"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "admin-videos",
+  "version": "0.0.1",
+  "description": "Admin do Catalogo",
+  "main": "index.js",
+  "scripts": {
+    "ts-node": "ts-node",
+    "tsc": "tsc",
+    "clean:tsc": "rm tsconfig.tsbuildinfo",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oMatheusmol/admin-catalog.git"
+  },
+  "keywords": [],
+  "author": "Matheus Mol",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oMatheusmol/admin-catalog/issues"
+  },
+  "homepage": "https://github.com/oMatheusmol/admin-catalog#readme",
+  "dependencies": {
+    "@swc/core": "^1.3.3",
+    "@swc/jest": "^0.2.22",
+    "@types/jest": "^29.0.3",
+    "@types/node": "^18.7.23",
+    "jest": "^29.0.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4"
+  }
+}
