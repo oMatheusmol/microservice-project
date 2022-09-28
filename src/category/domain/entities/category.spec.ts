@@ -1,5 +1,6 @@
 import { Category } from './category';
 import { omit } from 'lodash';
+import { validate as uuidValidate } from 'uuid';
 
 describe('Category Unit Tests', () => {
   test('constructor of category', () => {
@@ -90,5 +91,19 @@ describe('Category Unit Tests', () => {
     const now = new Date();
     category = new Category({ name: 'Movie', created_at: now });
     expect(category.created_at).toEqual(now);
+  });
+
+  test('id field', () => {
+    const data = [
+      { props: { name: 'Movie' }, id: undefined },
+      { props: { name: 'Movie' }, id: null },
+      { props: { name: 'Movie' }, id: '8d78728d-0d4a-4803-ba4d-8e130633cc4e' },
+    ];
+    data.forEach((i) => {
+      let category = new Category(i.props, i.id);
+      expect(category.id).toBeDefined();
+      expect(category.id).not.toBeNull();
+      expect(uuidValidate(category.id)).toBeTruthy();
+    });
   });
 });
