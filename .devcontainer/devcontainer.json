@@ -1,0 +1,14 @@
+{
+  "name": "Micro Videos",
+  "dockerComposeFile": [
+    "../docker-compose.yaml",
+    "../docker-compose.override.yaml",
+    "docker-compose.yml"
+  ],
+  "service": "app",
+  "workspaceFolder": "/home/node/app",
+  "settings": {
+    "terminal.integrated.defaultProfile.linux": "zsh"
+  },
+  "extensions": ["firsttris.vscode-jest-runner"]
+}
