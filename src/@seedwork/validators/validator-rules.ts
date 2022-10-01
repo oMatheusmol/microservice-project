@@ -15,14 +15,14 @@ export default class ValidatorRules {
   }
 
   string(): this {
-    if (isEmpty(this.value) || typeof this.value !== 'string') {
+    if (!isEmpty(this.value) && typeof this.value !== 'string') {
       throw new ValidationError(`The ${this.property} must be a string`);
     }
     return this;
   }
 
   maxLenght(max: number): this {
-    if (isEmpty(this.value) || this.value.length > max) {
+    if (!isEmpty(this.value) && this.value.length > max) {
       throw new ValidationError(
         `The ${this.property} must be less or equal to ${max} characters`
       );
@@ -31,7 +31,7 @@ export default class ValidatorRules {
   }
 
   boolean(): typeof this {
-    if (isEmpty(this.value) || typeof this.value !== 'boolean') {
+    if (!isEmpty(this.value) && typeof this.value !== 'boolean') {
       throw new ValidationError(`The ${this.property} must be a boolean`);
     }
     return this;

@@ -97,36 +97,34 @@ describe('ValidatorRules Unit Tests', () => {
         rule: 'maxLenght',
         params: [3],
       },
+    ];
+    invalidData.forEach((data) => {
+      assertIsInvalid(data as ExpectedValidationRule);
+    });
+    // valid cases
+    const validData = [
+      {
+        value: '12345',
+        property: 'field',
+        rule: 'maxLenght',
+        params: [6],
+      },
       {
         value: null,
         property: 'field',
-        errorMessage: new ValidationError(
-          'The field must be less or equal to 50 characters'
-        ),
         rule: 'maxLenght',
         params: [50],
       },
       {
         value: undefined,
         property: 'field',
-        errorMessage: new ValidationError(
-          'The field must be less or equal to 50 characters'
-        ),
         rule: 'maxLenght',
         params: [50],
       },
     ];
-    invalidData.forEach((data) => {
-      assertIsInvalid(data as ExpectedValidationRule);
+    validData.forEach((data) => {
+      assertIsValid(data as Omit<ExpectedValidationRule, 'errorMessage'>);
     });
-    // valid cases
-    const validData = {
-      value: '12345',
-      property: 'field',
-      rule: 'maxLenght',
-      params: [6],
-    };
-    assertIsValid(validData as Omit<ExpectedValidationRule, 'errorMessage'>);
   });
 
   test('string validation rule', () => {
@@ -138,32 +136,34 @@ describe('ValidatorRules Unit Tests', () => {
         errorMessage: new ValidationError('The field must be a string'),
         rule: 'string',
       },
-      {
-        value: undefined,
-        property: 'field',
-        errorMessage: new ValidationError('The field must be a string'),
-        rule: 'string',
-      },
-      {
-        value: null,
-        property: 'field',
-        errorMessage: new ValidationError('The field must be a string'),
-        rule: 'string',
-      },
     ];
     invalidData.forEach((data) => {
       assertIsInvalid(data as ExpectedValidationRule);
     });
     // valid cases
-    const validData = {
-      value: '12345',
-      property: 'field',
-      rule: 'string',
-    };
-    assertIsValid(validData as Omit<ExpectedValidationRule, 'errorMessage'>);
+    const validData = [
+      {
+        value: '12345',
+        property: 'field',
+        rule: 'string',
+      },
+      {
+        value: undefined,
+        property: 'field',
+        rule: 'string',
+      },
+      {
+        value: null,
+        property: 'field',
+        rule: 'string',
+      },
+    ];
+    validData.forEach((data) => {
+      assertIsValid(data as Omit<ExpectedValidationRule, 'errorMessage'>);
+    });
   });
 
-  test('string validation rule', () => {
+  test('boolean validation rule', () => {
     const invalidData = [
       {
         value: 5,
@@ -171,18 +171,7 @@ describe('ValidatorRules Unit Tests', () => {
         errorMessage: new ValidationError('The field must be a boolean'),
         rule: 'boolean',
       },
-      {
-        value: null,
-        property: 'field',
-        errorMessage: new ValidationError('The field must be a boolean'),
-        rule: 'boolean',
-      },
-      {
-        value: undefined,
-        property: 'field',
-        errorMessage: new ValidationError('The field must be a boolean'),
-        rule: 'boolean',
-      },
+
       {
         value: '',
         property: 'field',
@@ -209,6 +198,16 @@ describe('ValidatorRules Unit Tests', () => {
       },
       {
         value: false,
+        property: 'field',
+        rule: 'boolean',
+      },
+      {
+        value: null,
+        property: 'field',
+        rule: 'boolean',
+      },
+      {
+        value: undefined,
         property: 'field',
         rule: 'boolean',
       },
