@@ -20,5 +20,6 @@
     "titleBar.inactiveBackground": "#1e5f6099",
     "titleBar.inactiveForeground": "#e7e7e799",
     "commandCenter.border": "#e7e7e799"
-  }
+  },
+  "jestrunner.codeLensSelector": "**/*.{test,spec,int-spec}.{js,jsx,ts,tsx}"
 }

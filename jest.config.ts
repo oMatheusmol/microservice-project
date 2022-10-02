@@ -15,7 +15,7 @@ export default {
     },
   },
   rootDir: 'src',
-  // setupFilesAfterEnv: ['./@seedwork/domain/tests/validations.ts', './@seedwork/domain/tests/jest.ts'],
+  setupFilesAfterEnv: ['./@seedwork/domain/tests/validations.ts'],
   testRegex: '.*\\..*spec\\.ts$',
   transform: {
     '^.+\\.ts?$': ['@swc/jest'],
