@@ -1,4 +1,4 @@
-import UniqueEntityId from '../value-objects/unique-entiity-id.vo';
+import UniqueEntityId from '../value-objects/unique-entity-id.vo';
 import Entity from './entity';
 import { validate as uuidValidate } from 'uuid';
 
