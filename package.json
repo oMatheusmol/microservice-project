@@ -1,13 +1,14 @@
 {
-  "name": "Micro-Videos",
+  "name": "micro-videos",
   "version": "0.0.1",
-  "description": "Admin do Catalogo",
+  "description": "Admin do micro videos",
   "main": "index.js",
   "scripts": {
     "ts-node": "ts-node",
     "tsc": "tsc",
     "clean:tsc": "rm tsconfig.tsbuildinfo",
-    "test": "jest"
+    "test": "jest",
+    "test:coverage": "npm run test -- --coverage"
   },
   "repository": {
     "type": "git",
