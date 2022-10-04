@@ -2,3 +2,4 @@
 node_modules/
 tsconfig.tsbuildinfo
 __coverage
+dist/
