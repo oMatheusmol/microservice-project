@@ -24,11 +24,9 @@ import {
   CategoryCollectionPresenter,
   CategoryPresenter,
 } from './presenter/category.presenter';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
-//Unit tests
-
-// Inject - casos - mongoose, typeorm
-//unidade - request e response
+@ApiTags('Categories')
 @Controller('categories')
 export class CategoriesController {
   @Inject(CreateCategoryUseCase.UseCase)
@@ -46,41 +44,64 @@ export class CategoriesController {
   @Inject(ListCategoriesUseCase.UseCase)
   private listUseCase: ListCategoriesUseCase.UseCase;
 
-  //Arquitetura Hexagonal - Ports
-
   @Post()
+  @ApiResponse({ type: CategoryPresenter })
   async create(@Body() createCategoryDto: CreateCategoryDto) {
-    const output = await this.createUseCase.execute(createCategoryDto);
-    return new CategoryPresenter(output);
+    try {
+      const output = await this.createUseCase.execute(createCategoryDto);
+      return new CategoryPresenter(output);
+    } catch (e) {
+      return e;
+    }
   }
 
   @Get()
+  @ApiResponse({ type: CategoryCollectionPresenter })
   async search(@Query() searchParams: SearchCategoryDto) {
-    const output = await this.listUseCase.execute(searchParams);
-    return new CategoryCollectionPresenter(output);
+    try {
+      const output = await this.listUseCase.execute(searchParams);
+      return new CategoryCollectionPresenter(output);
+    } catch (e) {
+      return e;
+    }
   }
 
   @Get(':id')
+  @ApiResponse({ type: CategoryPresenter })
   async findOne(@Param('id') id: string) {
-    const output = await this.getUseCase.execute({ id });
-    return new CategoryPresenter(output);
+    try {
+      const output = await this.getUseCase.execute({ id });
+      return new CategoryPresenter(output);
+    } catch (e) {
+      return e;
+    }
   }
 
-  @Put(':id') //PUT vs PATCH
+  @Put(':id')
+  @ApiResponse({ type: CategoryPresenter })
   async update(
     @Param('id') id: string,
     @Body() updateCategoryDto: UpdateCategoryDto,
   ) {
-    const output = await this.updateUseCase.execute({
-      id,
-      ...updateCategoryDto,
-    });
-    return new CategoryPresenter(output);
+    try {
+      const output = await this.updateUseCase.execute({
+        id,
+        ...updateCategoryDto,
+      });
+      return new CategoryPresenter(output);
+    } catch (e) {
+      return e;
+    }
   }
 
   @HttpCode(204)
   @Delete(':id')
+  @ApiResponse({ status: 204 })
   remove(@Param('id') id: string) {
-    return this.deleteUseCase.execute({ id });
+    try {
+      return this.deleteUseCase.execute({ id });
+    } catch (e) {
+      return e;
+    }
   }
 }

@@ -3,9 +3,11 @@ import {
   PaginationPresenter,
   PaginationPresenterProps,
 } from './pagination.presenter';
+import { ApiProperty } from '@nestjs/swagger';
 
 export abstract class CollectionPresenter {
   @Exclude()
+  @ApiProperty()
   protected paginationPresenter: PaginationPresenter;
 
   constructor(props: PaginationPresenterProps) {
