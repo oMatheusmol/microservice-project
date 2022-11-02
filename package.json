@@ -1,0 +1,19 @@
+{
+  "name": "typescript-app",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "workspaces": [
+    "./src/@core",
+    "./src/nestjs"
+  ],
+  "scripts": {
+    "prestart:dev": "npm run build -w @core/api",
+    "start:dev": "npm run build:w -w @core/api & npm run start:dev -w nestjs",
+    "test": "jest",
+    "test:cov": "jest --coverage"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
