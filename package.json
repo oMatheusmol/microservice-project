@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
+  "author": "Matheus Mol",
   "workspaces": [
     "./src/@core",
     "./src/nestjs"
@@ -14,6 +15,5 @@
     "test:cov": "jest --coverage"
   },
   "keywords": [],
-  "author": "",
   "license": "ISC"
 }

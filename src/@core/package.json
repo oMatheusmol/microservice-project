@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "categories api",
   "main": "index.js",
+  "author": "Matheus Mol",
   "imports": {
     "#seedwork/domain": "./dist/@seedwork/domain/index.js",
     "#seedwork/*": "./dist/@seedwork/*.js",
@@ -51,7 +52,6 @@
     "cti:make": "sh ./cti.sh"
   },
   "keywords": [],
-  "author": "",
   "license": "ISC",
   "devDependencies": {
     "@swc/core": "^1.2.172",
