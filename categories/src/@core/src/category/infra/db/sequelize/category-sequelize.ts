@@ -76,7 +76,6 @@ export namespace CategorySequelize {
     }
 
     async findById(id: string | UniqueEntityId): Promise<Category> {
-      //DDD Entidade - regras - valida
       const _id = `${id}`;
       const model = await this._get(_id);
       return CategoryModelMapper.toEntity(model);
