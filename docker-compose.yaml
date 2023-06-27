@@ -4,6 +4,8 @@ services:
   categories:
     build: categories/
     container_name: categories
+    depends_on:
+      - mysql
     volumes:
       - ./categories:/home/node/app
     ports:
@@ -24,3 +26,26 @@ services:
       - ./grafana/provisioning:/etc/grafana/provisioning
     ports:
       - 3000:3000
+
+  loadgen:
+    build: ./loadgenerator
+    container_name: loadgen
+    command: ['-f', '/app/locustfile.py', '--host=http://categories:4000']
+    volumes:
+      - ./loadgenerator:/app
+    ports:
+      - 8089:8089
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: base
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+    volumes:
+      - ./mysql:/var/lib/mysql
+    ports:
+      - 3306:3306
