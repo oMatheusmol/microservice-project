@@ -2,10 +2,9 @@ version: '3'
 
 services:
   app:
-    build: .
-    container_name: typescript-app
-    command: .docker/start.sh
+    build: ./categories
+    container_name: categories
     volumes:
-      - .:/home/node/app
+      - ./categories:/home/node/app
     ports:
       - 3000:3000

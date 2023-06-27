@@ -5,7 +5,7 @@ import { CategoriesModule } from 'src/categories/categories.module';
 export class Swagger {
   static setup(app: INestApplication): void {
     const config: Omit<OpenAPIObject, 'paths'> = new DocumentBuilder()
-      .setTitle('Typescript API')
+      .setTitle('Categories API')
       .setDescription('🚀🚀')
       .setVersion('1.0')
       .build();
