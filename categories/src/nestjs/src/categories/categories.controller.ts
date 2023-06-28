@@ -25,6 +25,7 @@ import {
   CategoryPresenter,
 } from './presenter/category.presenter';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import logger from '@core/api/category/infra/logger';
 
 @ApiTags('Categories')
 @Controller('categories')
@@ -48,6 +49,7 @@ export class CategoriesController {
   @ApiResponse({ type: CategoryPresenter })
   async create(@Body() createCategoryDto: CreateCategoryDto) {
     try {
+      await logger.info(`/categories, POST, ${createCategoryDto}`);
       const output = await this.createUseCase.execute(createCategoryDto);
       return new CategoryPresenter(output);
     } catch (e) {
@@ -59,6 +61,7 @@ export class CategoriesController {
   @ApiResponse({ type: CategoryCollectionPresenter })
   async search(@Query() searchParams: SearchCategoryDto) {
     try {
+      await logger.info(`/categories, GET, ${searchParams}`);
       const output = await this.listUseCase.execute(searchParams);
       return new CategoryCollectionPresenter(output);
     } catch (e) {
@@ -70,6 +73,7 @@ export class CategoriesController {
   @ApiResponse({ type: CategoryPresenter })
   async findOne(@Param('id') id: string) {
     try {
+      await logger.info(`/categories/:id, GET, ${id}`);
       const output = await this.getUseCase.execute({ id });
       return new CategoryPresenter(output);
     } catch (e) {
@@ -84,6 +88,7 @@ export class CategoriesController {
     @Body() updateCategoryDto: UpdateCategoryDto,
   ) {
     try {
+      await logger.info(`/categories/:id, PUT, ${id}, ${updateCategoryDto}`);
       const output = await this.updateUseCase.execute({
         id,
         ...updateCategoryDto,
@@ -97,8 +102,9 @@ export class CategoriesController {
   @HttpCode(204)
   @Delete(':id')
   @ApiResponse({ status: 204 })
-  remove(@Param('id') id: string) {
+  async remove(@Param('id') id: string) {
     try {
+      await logger.info(`/categories/:id, DELETE, ${id}`);
       return this.deleteUseCase.execute({ id });
     } catch (e) {
       return e;
