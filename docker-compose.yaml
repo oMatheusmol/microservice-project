@@ -14,6 +14,8 @@ services:
   prometheus:
     image: prom/prometheus:latest
     container_name: prometheus
+    depends_on:
+      - categories
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
@@ -22,6 +24,8 @@ services:
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
+    depends_on:
+      - prometheus
     volumes:
       - ./grafana/provisioning:/etc/grafana/provisioning
     ports:
@@ -30,6 +34,8 @@ services:
   loadgen:
     build: ./loadgenerator
     container_name: loadgen
+    depends_on:
+      - categories
     command: ['-f', '/app/locustfile.py', '--host=http://categories:4000']
     volumes:
       - ./loadgenerator:/app
@@ -49,3 +55,31 @@ services:
       - ./mysql:/var/lib/mysql
     ports:
       - 3306:3306
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.14.0
+    environment:
+      - node.name=elasticsearch
+      - cluster.name=es-docker-cluster
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - 'ES_JAVA_OPTS=-Xms512m -Xmx512m'
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata1:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+
+  kibana:
+    depends_on:
+      - elasticsearch
+    image: docker.elastic.co/kibana/kibana:7.14.0
+    ports:
+      - 5601:5601
+
+volumes:
+  esdata1:
+    driver: local
