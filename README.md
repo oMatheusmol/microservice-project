@@ -1,4 +1,4 @@
-# Categories Microservice Project
+# Microservice Project
 
 This project is composed of a Categories microservice, developed with Nest.js, and several other tools for monitoring, load generation, data persistence, and search. Each service is a Docker container that can be run using Docker Compose.
 
