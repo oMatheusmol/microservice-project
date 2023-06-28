@@ -1,4 +1,4 @@
-# Categories Microservice Project
+# Microservice Project
 
 This project is composed of a Categories microservice, developed with Nest.js, and several other tools for monitoring, load generation, data persistence, and search. Each service is a Docker container that can be run using Docker Compose.
 
@@ -66,5 +66,9 @@ Once the services are running, you can access them using the following URLs:
 - Load generator: [http://localhost:8089](http://localhost:8089)
 - Elasticsearch: [http://localhost:9200](http://localhost:9200)
 - Kibana: [http://localhost:5601](http://localhost:5601)
+
+## Categories API Architecture
+
+![Nome alternativo](imagens/ddd_categories.svg)
 
 Please refer to the API documentation or the source code of the Categories microservice for more
